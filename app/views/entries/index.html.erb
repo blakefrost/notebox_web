@@ -1,12 +1,7 @@
 <%= javascript_include_tag 'entries' %>
 <%= stylesheet_link_tag 'entries' %>
 
-<script>
-  $(function() {
-    $('a.image-link').magnificPopup({type:'image'});
-  });
-</script>
-
+<%= render "lightbox_initialize" %>
 
 <div class="container entries-list">
   <div class="row">
