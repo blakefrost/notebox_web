@@ -48,7 +48,16 @@ class EntriesController < ApplicationController
     end
 
     html = $markdown.render(markdown)
+
+    # Highlight search keywords.
     html = html.gsub(/(#{highlight})/i, '<span class="highlight">\1</span>') if highlight
+
+    # Add lightbox data
+    doc = Nokogiri::HTML(html)
+    doc.css('img').each do |image|
+      image.swap "<a href=\"#{image.attribute("src")}\" data-lightbox=\"example\">#{image}</a>"
+    end
+    html = doc.to_html
 
     attributes = {
       path: path,

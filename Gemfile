@@ -17,6 +17,7 @@ gem "angularjs-rails"
 gem 'unicorn'
 gem 'simple_form'
 gem 'binding_of_caller'
+gem 'nokogiri'
 
 gem 'bson'
 gem 'bson_ext'

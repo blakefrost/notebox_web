@@ -100,12 +100,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.5.1)
     minitest (4.7.5)
     moped (2.0.0.beta4)
       bson (~> 2.0)
       connection_pool (~> 1.2)
       optionable (~> 0.2.0)
     multi_json (1.8.2)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     nprogress-rails (0.1.2.3)
     optionable (0.2.0)
     origin (1.1.0)
@@ -187,6 +190,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mongoid (~> 4.0.0.alpha1)!
+  nokogiri
   nprogress-rails
   rails (= 4.0.2)
   redcarpet
