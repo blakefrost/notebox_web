@@ -55,7 +55,7 @@ class EntriesController < ApplicationController
     # Add lightbox data
     doc = Nokogiri::HTML(html)
     doc.css('img').each do |image|
-      image.swap "<a href=\"#{image.attribute("src")}\" data-lightbox=\"example\">#{image}</a>"
+      image.swap "<a href=\"#{image.attribute("src")}\" class=\"image-link\">#{image}</a>"
     end
     html = doc.to_html
 

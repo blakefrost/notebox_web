@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require lib/waterfall
-//= require lib/lightbox
+//= require lib/jquery.magnific_popup
 //= require nprogress
 //= require ace/ace
 
