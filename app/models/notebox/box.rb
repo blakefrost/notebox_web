@@ -33,6 +33,13 @@ class Notebox::Box
 
       html = $markdown.render(markdown)
 
+      # Add lightbox data
+      doc = Nokogiri::HTML(html)
+      doc.css('img').each do |image|
+        image.swap "<a href=\"#{image.attribute("src")}\" class=\"image-link\">#{image}</a>"
+      end
+      html = doc.to_html
+
       attributes = {
         path: topic ? "/#{topic}/entries#{path}" : "/entries#{path}",
         markdown: markdown,
@@ -78,6 +85,13 @@ class Notebox::Box
 
       html = $markdown.render(markdown)
       html = html.gsub(/(#{keyword})/i, '<span class="highlight">\1</span>')
+
+      # Add lightbox data
+      doc = Nokogiri::HTML(html)
+      doc.css('img').each do |image|
+        image.swap "<a href=\"#{image.attribute("src")}\" class=\"image-link\">#{image}</a>"
+      end
+      html = doc.to_html
 
       attributes = {
         path: topic ? "/#{topic}#{path}" : path,
