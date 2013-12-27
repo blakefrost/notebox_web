@@ -1,6 +1,29 @@
 <div class="container">
-  <a href="/timers/new">New</a>
-  <% @timers.each do |timer| %>
-    <timer></timer>
-  <% end %>
+
+  <div class="row">
+    <div class="col-md-9">
+      <%= link_to "← Previous Day", options_url("/timers", days_ago: @options[:days_ago].to_i + 1 ) %>
+      &nbsp;
+      <%= link_to "Next Day →", options_url("/timers", days_ago: @options[:days_ago].to_i - 1 ) %>
+      &nbsp;
+      <%= link_to "Today", timers_url %>
+
+      <% @timers.each do |timer| %>
+        <div class="entry entry-list">
+          <h4>
+            <a href="<%= timer[:path] %>"><%= timer[:title] || timer[:formatted_date_time] %></a>
+            <a href="<%= timer.path %>/edit" class="edit">edit</a>
+          </h4>
+          <div class="entry-body">
+            <%= raw(timer[:html]) %>
+            <timer></timer>
+          </div>
+          <p>
+            <%= time_ago_in_words(timer[:created_at]) %> ago
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 </div>
