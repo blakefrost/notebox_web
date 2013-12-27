@@ -5,12 +5,18 @@ app.controller "timerController", ['$scope', '$element', '$attrs', ($scope, $ele
   $scope.elasped.seconds = 0
   $scope.elasped.minutes = 0
   $scope.elasped.hours = 0
+  $scope.running = false
 
   tick = ->
     $scope.$apply ->
       $scope.elasped.seconds += 1
 
-  setInterval(tick, 1000, this)
+  $scope.toggle = ->
+    $scope.running = !$scope.running
+    if $scope.running
+      $scope.intervalID = setInterval(tick, 1000, this)
+    else
+      clearInterval($scope.intervalID)
 
   $scope.pad = (n, width, z) ->
     z = z or "0"

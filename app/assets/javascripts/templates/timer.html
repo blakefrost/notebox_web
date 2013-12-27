@@ -1,1 +1,4 @@
-<input type="button" class="btn" value="Start - {{pad(elasped.hours, 2)}}:{{pad(elasped.minutes, 2)}}:{{pad(elasped.seconds, 2)}}"></input>
+<input type="button"
+       class="btn btn-primary"
+       value="{{running ? 'Stop' : 'Start'}} - {{pad(elasped.hours, 2)}}:{{pad(elasped.minutes, 2)}}:{{pad(elasped.seconds, 2)}}"
+       ng-click="toggle()"></input>
