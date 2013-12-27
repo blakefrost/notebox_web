@@ -5,50 +5,59 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
   $scope.formmattedElaspedTime = "00:00:00"
   $scope.elaspedSeconds = 0
 
+  formatSeconds = (seconds) ->
+    hours = Math.floor(seconds / 3600)
+    seconds -= hours * 3600
+    minutes = Math.floor(seconds / 60)
+    seconds -= minutes * 60
+    seconds = Math.floor(seconds)
+    $scope.formmattedElaspedTime = "#{pad(hours, 2)}:#{pad(minutes, 2)}:#{pad(seconds, 2)}"
+
   tick = ->
     $scope.$apply ->
-      seconds = $scope.elaspedSeconds + ((new Date()).getTime() / 1000 - $scope.startTime)
-      hours = Math.floor(seconds / 3600)
-      seconds -= hours * 3600
-      minutes = Math.floor(seconds / 60)
-      seconds -= minutes * 60
-      seconds = Math.floor(seconds)
-      $scope.formmattedElaspedTime = "#{pad(hours, 2)}:#{pad(minutes, 2)}:#{pad(seconds, 2)}"
+      now = new XDate()
+      seconds = $scope.elaspedSeconds + $scope.startTime.diffSeconds(now)
+      $scope.formmattedElaspedTime = formatSeconds(seconds)
 
+  startTimer = ->
+    $scope.startTime = new XDate()
+    $scope.intervalID = setInterval(tick, 200, this)
+
+    # Put to the timer endpoint to start it.
+    data =
+      startTime: $scope.startTime
+      running: true
+
+    # Start timer on server
+    $http.put $scope.href, data,
+      success: (data, status, headers, config) ->
+        console.log "success"
+      error: (data, status, headers, config) ->
+        console.log "error"
+
+  stopTimer = ->
+    now = new XDate()
+    $scope.elaspedSeconds += Math.floor($scope.startTime.diffSeconds(now))
+
+    clearInterval($scope.intervalID)
+
+    data =
+      running: false
+      elaspedSeconds: Math.floor($scope.elaspedSeconds)
+
+    ## Stop timer on server
+    $http.put $scope.href, data,
+      success: (data, status, headers, config) ->
+        console.log "success"
+      error: (data, status, headers, config) ->
+        console.log "error"
 
   $scope.toggle = ->
     $scope.running = !$scope.running
     if $scope.running
-      $scope.startTime = (new Date()).getTime() / 1000
-      $scope.intervalID = setInterval(tick, 200, this)
-
-      # Put to the timer endpoint to start it.
-      data =
-        startTime: $scope.startTime
-        running: true
-
-      # Start timer on server
-      $http.put $scope.href, data,
-        success: (data, status, headers, config) ->
-          console.log "success"
-        error: (data, status, headers, config) ->
-          console.log "error"
-
+      startTimer()
     else
-      $scope.elaspedSeconds += ((new Date()).getTime() / 1000 - $scope.startTime)
-      clearInterval($scope.intervalID)
-
-      #data =
-        #running: false
-        #stopTime: $scope.startTime
-
-      ## Stop timer on server
-      #$http.put $scope.href, data,
-        #success: (data, status, headers, config) ->
-          #console.log "success"
-        #error: (data, status, headers, config) ->
-          #console.log "error"
-
+      stopTimer()
 
   pad = (n, width, z) ->
     z = z or "0"

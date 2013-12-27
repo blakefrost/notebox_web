@@ -26,8 +26,11 @@ class TimersController < ApplicationController
   end
 
   def update
-    throw params[:startTime]
-    # Get the note entrry
+    start_time      = params[:start_time]
+    running         = params[:running]
+    seconds_elasped = params[:seconds_elasped]
+    path            = params[:path]
+
     # Add start time attribute
     # Save note
     head 200

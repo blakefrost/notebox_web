@@ -16,7 +16,7 @@
           </h4>
           <div class="entry-body">
             <%= raw(timer[:html]) %>
-            <timer href="<%= timer[:path] %>"></timer>
+            <%= render 'timer', timer: timer %>
           </div>
           <p>
             <%= time_ago_in_words(timer[:created_at]) %> ago

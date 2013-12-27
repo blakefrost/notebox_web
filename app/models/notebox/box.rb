@@ -1,3 +1,5 @@
+require 'yaml'
+
 class Notebox::Box
 
   def initialize(path)
@@ -20,12 +22,10 @@ class Notebox::Box
       created_at = parse_created_at("#{path}.#{ext}")
 
       markdown = File.read(full_path)
-      front_matter, _markdown = markdown.match(/---((.|\n)*)---((.|\n)*)/).try(:captures)
-      if front_matter
-        #front_matter = YAML.load(front_matter)
-        front_matter = {}
-        markdown = markdown.gsub(/---(.|\n)*---/, '') # Strip front matter
-        title = front_matter["title"]
+
+      attributes, markdown = extract_attributes(markdown)
+      if attributes
+        title = attributes["title"]
       end
 
       render_checkboxes!(markdown)
@@ -131,5 +131,22 @@ private
     markdown.gsub!(/^(  )?\[ \](.*)/, "<input type=\"checkbox\"></input> \\2<br>")
     markdown.gsub!(/^(  )?\[(x|X)\](.*)/, "<input type=\"checkbox\" checked></input> \\3<br>")
   end
+
+  def extract_attributes(content)
+    lines = content.lines
+
+    # Only read from matter if --- is first line in the file.
+    return [nil, content] unless lines.shift == '---'
+
+    attribute_lines = []
+
+    while line = lines.shift && line.chomp != '---'
+      attribute_lines << line
+    end
+    attributes = YAML::parse(attributes_lines.join("\n"))
+    body = lines.join
+    [attributes, body]
+  end
+
 
 end
