@@ -15,7 +15,6 @@
 //= require_self
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap
 //= require lib/waterfall
 //= require lib/jquery.magnific_popup
