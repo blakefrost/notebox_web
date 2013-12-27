@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require require
+//= require angular
+//= require_self
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
@@ -19,9 +21,15 @@
 //= require lib/jquery.magnific_popup
 //= require nprogress
 //= require ace/ace
+//
+//= require_tree ./templates
+//= require_tree ./controllers
+//= require_tree ./directives
 
-NProgress.configure({
-  showSpinner: false,
-  ease: 'ease',
-  speed: 500
-})
+app = angular.module("app", ["templates"])
+
+//NProgress.configure({
+  //showSpinner: false,
+  //ease: 'ease',
+  //speed: 500
+//})
