@@ -1,15 +1,10 @@
 app = angular.module("app")
 
-# TODO: Fix major bugs keeping timer from running correctly.
-
 app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($scope, $element, $attrs, $http) ->
-  $scope.running ?= false
-  $scope.elaspedSeconds ?= 0
-
-  if $scope.startTime
-    $scope.startTime = new XDate($scope.startTime)
-  else
-    $scope.startTime = new XDate()
+  $scope.href = $attrs.href
+  $scope.running = $attrs.running
+  $scope.elaspedSeconds = $attrs.elaspedSeconds
+  $scope.startTime = new XDate($attrs.startTime)
 
   formatSeconds = (seconds) ->
     hours = Math.floor(seconds / 3600)
@@ -26,8 +21,8 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
       $scope.formmattedElaspedTime = formatSeconds(seconds)
 
   $scope.startTimer = ->
-    @startTime = new XDate()
-    @intervalID = setInterval(tick, 200, this)
+    $scope.startTime = new XDate()
+    $scope.intervalID = setInterval(tick, 200, this)
 
     # Put to the timer endpoint to start it.
     data =
@@ -35,7 +30,7 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
       start_time: $scope.startTime
 
     # Start timer on server
-    $http.put @href, data,
+    $http.put $scope.href, data,
       success: (data, status, headers, config) ->
         console.log "success"
       error: (data, status, headers, config) ->
@@ -43,27 +38,27 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
 
   $scope.stopTimer = ->
     now = new XDate()
-    @elaspedSeconds += Math.floor(@startTime.diffSeconds(now))
+    $scope.elaspedSeconds += Math.floor($scope.startTime.diffSeconds(now))
 
-    clearInterval(@intervalID)
+    clearInterval($scope.intervalID)
 
     data =
       running: false
-      elasped_seconds: Math.floor(@elaspedSeconds)
+      elasped_seconds: Math.floor($scope.elaspedSeconds)
 
     ## Stop timer on server
-    $http.put @href, data,
+    $http.put $scope.href, data,
       success: (data, status, headers, config) ->
         console.log "success"
       error: (data, status, headers, config) ->
         console.log "error"
 
   $scope.toggle = ->
-    @running = !@running
-    if @running
-      @startTimer()
+    $scope.running = !$scope.running
+    if $scope.running
+      $scope.startTimer()
     else
-      @stopTimer()
+      $scope.stopTimer()
 
   pad = (n, width, z) ->
     z = z or "0"
@@ -72,9 +67,8 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
 
   $scope.formmattedElaspedTime = formatSeconds($scope.elaspedSeconds)
 
-  #if $scope.running
-    #$scope.startTime = new XDate()
-    #$scope.intervalID = setInterval(tick, 200, this)
+  if $scope.running
+    $scope.intervalID = setInterval(tick, 200, this)
 
 
 ]

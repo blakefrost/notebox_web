@@ -202,21 +202,6 @@ class EntriesController < ApplicationController
     File.write(full_path + '.txt', markdown)
 
     redirect_to "/entries/" + path
-
-    #root_path = "/Users/blake/.notes/entries/"
-    #path = params[:path]
-    #full_path = root_path + path
-
-    #created_at = parse_created_at(path)
-
-    #markdown = File.read(full_path + '.txt')
-
-    #tags = front_matter[:tags]
-
-
-    ## Open the file for writing, and save.
-
-    #render text: 'hold tight'
   end
 
 private
