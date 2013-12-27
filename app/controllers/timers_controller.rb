@@ -1,5 +1,7 @@
 class TimersController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
+
   def index
     date = Date.today - params[:days_ago].to_i.days
 
@@ -24,6 +26,7 @@ class TimersController < ApplicationController
   end
 
   def update
+    head 200
   end
 
 private

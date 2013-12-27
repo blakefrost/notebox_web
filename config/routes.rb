@@ -45,9 +45,10 @@ NoteboxWeb::Application.routes.draw do
   end
 
   # Times
-  scope '/timers', controller: 'timers' do
+  scope '/timer', controller: 'timers' do
     get '/' => :index, as: 'timers'
     get  '/new' => :new
+    put '*path' => :update
   end
 
   # Email

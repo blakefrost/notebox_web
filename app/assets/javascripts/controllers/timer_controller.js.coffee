@@ -1,6 +1,6 @@
 app = angular.module("app")
 
-app.controller "timerController", ['$scope', '$element', '$attrs', ($scope, $element, $attrs) ->
+app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($scope, $element, $attrs, $http) ->
   $scope.running = false
   $scope.formmattedElaspedTime = "00:00:00"
   $scope.elaspedSeconds = 0
@@ -21,6 +21,17 @@ app.controller "timerController", ['$scope', '$element', '$attrs', ($scope, $ele
     if $scope.running
       $scope.startTime = (new Date()).getTime() / 1000
       $scope.intervalID = setInterval(tick, 200, this)
+
+      success = (data, status, headers, config) ->
+        console.log "success"
+
+      error = (data, status, headers, config) ->
+        console.log "error"
+
+      # Put to the timer endpoint to start it.
+      $http({method: 'PUT', url: $scope.href})
+        .success(success).error(error)
+
     else
       $scope.elaspedSeconds += ((new Date()).getTime() / 1000 - $scope.startTime)
       clearInterval($scope.intervalID)
