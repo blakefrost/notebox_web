@@ -26,6 +26,10 @@ class TimersController < ApplicationController
   end
 
   def update
+    throw params[:startTime]
+    # Get the note entrry
+    # Add start time attribute
+    # Save note
     head 200
   end
 

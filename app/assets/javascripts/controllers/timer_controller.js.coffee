@@ -22,15 +22,15 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
       $scope.startTime = (new Date()).getTime() / 1000
       $scope.intervalID = setInterval(tick, 200, this)
 
-      success = (data, status, headers, config) ->
-        console.log "success"
-
-      error = (data, status, headers, config) ->
-        console.log "error"
-
       # Put to the timer endpoint to start it.
-      $http({method: 'PUT', url: $scope.href})
-        .success(success).error(error)
+      data =
+        startTime: $scope.startTime
+
+      $http.put $scope.href, data,
+        success: (data, status, headers, config) ->
+          console.log "success"
+        error: (data, status, headers, config) ->
+          console.log "error"
 
     else
       $scope.elaspedSeconds += ((new Date()).getTime() / 1000 - $scope.startTime)
