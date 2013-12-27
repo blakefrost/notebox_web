@@ -2,7 +2,7 @@ app = angular.module("app")
 
 app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($scope, $element, $attrs, $http) ->
   $scope.href = $attrs.href
-  $scope.running = $attrs.running
+  $scope.running = $attrs.running == 'true'
   $scope.elaspedSeconds = $attrs.elaspedSeconds*1
   $scope.startTime = new XDate($attrs.startTime)
 
