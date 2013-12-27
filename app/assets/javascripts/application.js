@@ -20,6 +20,7 @@
 //= require lib/jquery.magnific_popup
 //= require nprogress
 //= require ace/ace
+//= require xdate
 //
 //= require_tree ./templates
 //= require_tree ./controllers

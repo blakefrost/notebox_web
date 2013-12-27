@@ -25,7 +25,9 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
       # Put to the timer endpoint to start it.
       data =
         startTime: $scope.startTime
+        running: true
 
+      # Start timer on server
       $http.put $scope.href, data,
         success: (data, status, headers, config) ->
           console.log "success"
@@ -35,6 +37,18 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
     else
       $scope.elaspedSeconds += ((new Date()).getTime() / 1000 - $scope.startTime)
       clearInterval($scope.intervalID)
+
+      #data =
+        #running: false
+        #stopTime: $scope.startTime
+
+      ## Stop timer on server
+      #$http.put $scope.href, data,
+        #success: (data, status, headers, config) ->
+          #console.log "success"
+        #error: (data, status, headers, config) ->
+          #console.log "error"
+
 
   pad = (n, width, z) ->
     z = z or "0"
