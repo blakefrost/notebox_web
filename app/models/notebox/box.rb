@@ -24,9 +24,6 @@ class Notebox::Box
       markdown = File.read(full_path)
 
       attributes, markdown = extract_attributes(markdown)
-      if attributes
-        title = attributes["title"]
-      end
 
       render_checkboxes!(markdown)
       markdown.gsub!(/notebox:\/\/(\S*)/, 'http://localhost:3000/\1')
@@ -40,7 +37,7 @@ class Notebox::Box
       end
       html = doc.to_html
 
-      attributes = {
+      attributes.merge!(
         path: topic ? "/#{topic}/entries#{path}" : "/entries#{path}",
         markdown: markdown,
         html: html,
@@ -48,8 +45,8 @@ class Notebox::Box
         formatted_date: created_at.strftime('%A, %B %e %Y'),
         formatted_time: created_at.strftime('%I:%M %p'),
         formatted_date_time: created_at.strftime('%A, %B %e, %Y, %l:%M %p'),
-        title: title
-      }
+      )
+
       OpenStruct.new(attributes)
     }
     entries.reverse!
@@ -136,17 +133,17 @@ private
     lines = content.lines
 
     # Only read from matter if --- is first line in the file.
-    return [nil, content] unless lines.shift == '---'
+    return [{}, content] unless lines.shift.try(:chomp) == '---'
 
     attribute_lines = []
 
-    while line = lines.shift && line.chomp != '---'
+    while (line = lines.shift) && line.try(:chomp) != '---'
       attribute_lines << line
     end
-    attributes = YAML::parse(attributes_lines.join("\n"))
+    attributes = YAML.load(attribute_lines.join("\n"))
+    attributes.symbolize_keys!
     body = lines.join
     [attributes, body]
   end
-
 
 end

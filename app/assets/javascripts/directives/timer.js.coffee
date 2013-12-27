@@ -8,5 +8,8 @@ app.directive "timer", [ '$window', '$document', ( $window, $document ) ->
     templateUrl: 'timer.html'
     scope:
       href: "@"
+      startTime: "@"
+      elaspedSeconds: "@"
+      running: "@"
   }
 ]
