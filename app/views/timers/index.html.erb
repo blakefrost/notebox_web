@@ -1,12 +1,15 @@
 <div class="container">
 
+
   <div class="row">
     <div class="col-md-9">
-      <%= link_to "← Previous Day", options_url("/timers", days_ago: @options[:days_ago].to_i + 1 ) %>
+      <%= link_to "← Previous Day", options_url(timers_url, days_ago: @options[:days_ago].to_i + 1 ) %>
       &nbsp;
-      <%= link_to "Next Day →", options_url("/timers", days_ago: @options[:days_ago].to_i - 1 ) %>
+      <%= link_to "Next Day →", options_url(timers_url, days_ago: @options[:days_ago].to_i - 1 ) %>
       &nbsp;
-      <%= link_to "Today", timers_url %>
+      <%= link_to "Today", timers_url, class: "btn" %>
+
+      <%= link_to "New Timer", new_timer_path, class: "btn" %>
 
       <% @timers.each do |timer| %>
         <div class="entry entry-list">

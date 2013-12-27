@@ -1,15 +1,13 @@
-<script src="/assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-
 <div class="container">
-  <div class="entry entry-edit clearfix">
-    <%= form_tag "/entries/#{@entry.path}", role: "form" do %>
-      <div class="title-area">
-        <input class="btn btn-primary pull-right" type="submit" value="Save Changes"></input>
-        <h2 class="entry-title"><%= @entry.formatted_date_time %></h2>
-      </div>
-      <%= render 'editor' %>
-    <% end %>
-  </div>
+	<h2>New Timer</h2>
+
+	<div class="editor-container">
+		<textarea name="markdown" class="hide"></textarea>
+		<div id="editor" style="width: 500px; height: 200px;"></div>
+	</div>
+
+	<br>
+	<input type="button" class="btn btn-primary" value="Start Timer"></input>
 </div>
 
 <script>
