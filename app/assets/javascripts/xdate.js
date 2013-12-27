@@ -824,12 +824,11 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 // AMD
-if (typeof define === 'function' && define.amd) {
-  define([], function() {
-    return XDate;
-  });
-}
-
+//if (typeof define === 'function' && define.amd) {
+  //define([], function() {
+    //return XDate;
+  //});
+//}
 
 return XDate;
 
