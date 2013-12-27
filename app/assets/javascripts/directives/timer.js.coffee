@@ -6,5 +6,7 @@ app.directive "timer", [ '$window', '$document', ( $window, $document ) ->
     replace: true
     controller: 'timerController'
     templateUrl: 'timer.html'
+    scope:
+      href: "@"
   }
 ]
