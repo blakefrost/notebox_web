@@ -3,7 +3,7 @@ app = angular.module("app")
 app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($scope, $element, $attrs, $http) ->
   $scope.href = $attrs.href
   $scope.running = $attrs.running
-  $scope.elaspedSeconds = $attrs.elaspedSeconds
+  $scope.elaspedSeconds = $attrs.elaspedSeconds*1
   $scope.startTime = new XDate($attrs.startTime)
 
   formatSeconds = (seconds) ->
@@ -37,14 +37,13 @@ app.controller "timerController", ['$scope', '$element', '$attrs', '$http', ($sc
         console.log "error"
 
   $scope.stopTimer = ->
+    clearInterval($scope.intervalID)
     now = new XDate()
     $scope.elaspedSeconds += Math.floor($scope.startTime.diffSeconds(now))
 
-    clearInterval($scope.intervalID)
-
     data =
       running: false
-      elasped_seconds: Math.floor($scope.elaspedSeconds)
+      elasped_seconds: $scope.elaspedSeconds
 
     ## Stop timer on server
     $http.put $scope.href, data,
