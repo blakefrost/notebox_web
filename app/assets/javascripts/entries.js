@@ -9,9 +9,10 @@ function expandTextarea(id) {
   }, false);
 }
 
-$(document).keypress(function(event){
-  // Automatically take the user to new page when pressing n
-  if (event.which == 110) {
-    window.location = '/new';
-  }
-});
+// Disabled for now, as can't search for anything with n
+//$(document).keypress(function(event){
+  //// Automatically take the user to new page when pressing n
+  //if (event.which == 110) {
+    //window.location = '/new';
+  //}
+//});
