@@ -69,25 +69,22 @@ class Notebox::Box
       created_at = parse_created_at("#{path}.#{ext}")
 
       markdown = File.read(full_path)
-      front_matter, _markdown = markdown.match(/---((.|\n)*)---((.|\n)*)/).try(:captures)
-      if front_matter
-        #front_matter = YAML.load(front_matter)
-        front_matter = {}
-        markdown = markdown.gsub(/---(.|\n)*---/, '') # Strip front matter
-        title = front_matter["title"]
-      end
 
       render_checkboxes!(markdown)
       markdown.gsub!(/notebox:\/\/(\S*)/, 'http://localhost:3000/\1')
 
       html = $markdown.render(markdown)
-      html = html.gsub(/(#{keyword})/i, '<span class="highlight">\1</span>')
 
       # Add lightbox data
       doc = Nokogiri::HTML(html)
       doc.css('img').each do |image|
         image.swap "<a href=\"#{image.attribute("src")}\" class=\"image-link\">#{image}</a>"
       end
+
+      doc.xpath('//text()').each do |el|
+        el.swap el.content.gsub(/(#{keyword})/i, '<span class="highlight">\1</span>')
+      end
+
       html = doc.to_html
 
       attributes = {
@@ -97,8 +94,7 @@ class Notebox::Box
         created_at: created_at,
         formatted_date: created_at.strftime('%A, %B %e %Y'),
         formatted_time: created_at.strftime('%I:%M %p'),
-        formatted_date_time: created_at.strftime('%A, %B %e, %Y, %l:%M %p'),
-        title: title
+        formatted_date_time: created_at.strftime('%A, %B %e, %Y, %l:%M %p')
       }
       OpenStruct.new(attributes)
     end
