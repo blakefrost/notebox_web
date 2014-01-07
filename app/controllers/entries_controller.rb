@@ -86,7 +86,7 @@ class EntriesController < ApplicationController
     # - Get the log od diffs to render. (Could be a cell or facet of diffs
     # controller.
 
-    root_path = "/Users/blake/.notes/entries/"
+    root_path = "#{NOTES_ROOT}/entries/"
     path = params[:path]
     full_path = root_path + path
 
@@ -192,7 +192,7 @@ class EntriesController < ApplicationController
   end
 
   def update
-    root_path = "/Users/blake/.notes/entries/"
+    root_path = "#{NOTES_ROOT}/entries/"
     path = params[:path]
     full_path = root_path + path
     created_at = parse_created_at(path)

@@ -32,7 +32,7 @@ class TimersController < ApplicationController
     elasped_seconds = params[:elasped_seconds]
     path            = params[:path]
 
-    root_path = "/Users/blake/.notes/timer/"
+    root_path = "#{NOTES_ROOT}/timer/"
     full_path = root_path + path
     created_at = parse_created_at(path)
 
