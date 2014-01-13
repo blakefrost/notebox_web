@@ -60,6 +60,11 @@ module ApplicationHelper
       li_options[:class] = active(options[:active_path])
     end
 
+    if options[:class]
+      li_options[:class] ||= ""
+      li_options[:class] << " #{options[:class]}"
+    end
+
     content_tag('li', content.html_safe, li_options).html_safe
   end
 

@@ -16,7 +16,7 @@
         <%= navbar_li "Notes", '/', active_path: '/(notes.*)?$'  %>
         <%= navbar_li "<i class=\"glyphicon glyphicon-flash\"></i>".html_safe, '/new'  %>
         <%= navbar_li "Images", '/images' %>
-        <%= navbar_li "Timers", timers_path %>
+        <%= navbar_li "Timers", timers_path, class: 'timer-running' %>
 
         <%= dropdown_menu "More <b class=\"caret\"></b>" do %>
           <%= navbar_li "Attachments", '/attachments' %>
