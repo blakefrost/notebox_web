@@ -72,4 +72,8 @@ module ApplicationHelper
     "#{path}?#{@options.merge(options).to_param}"
   end
 
+  def timer_running
+    false # TODO: Implement me.
+  end
+
 end
