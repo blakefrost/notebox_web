@@ -16,6 +16,7 @@
         <%= navbar_li "Notes", '/', active_path: '/(notes.*)?$'  %>
         <%= navbar_li "<i class=\"glyphicon glyphicon-flash\"></i>".html_safe, '/new'  %>
         <%= navbar_li "Images", '/images' %>
+        <%= navbar_li "Timers", timers_path %>
 
         <%= dropdown_menu "More <b class=\"caret\"></b>" do %>
           <%= navbar_li "Attachments", '/attachments' %>
@@ -23,7 +24,6 @@
           <%= navbar_li "Radio", "/radio" %>
           <%= navbar_li "Email", "/emails", active_path: "/emails?"  %>
           <%= navbar_li "Wiki", "/wiki" %>
-          <%= navbar_li "Timers", timers_path %>
           <%= navbar_li "Videos", "/videos" %>
           <%= navbar_li "News", "/news" %>
 
