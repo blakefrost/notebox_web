@@ -73,7 +73,7 @@ module ApplicationHelper
   end
 
   def timer_running
-    false # TODO: Implement me.
+    `grep -R "running: true" ~/Notes/timer` != ""
   end
 
 end
