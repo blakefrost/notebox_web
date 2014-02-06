@@ -1,4 +1,4 @@
-This is a companion project for Notebox, the revolutionary note taking to
+This is a companion project for Notebox, the revolutionary note taking tool
 available from an internet near you.
 
 Here is what it looks like.
