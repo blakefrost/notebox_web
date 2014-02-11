@@ -9,8 +9,10 @@
 <div class="container">
   DNS Proxy is
   <% if @running %>
-    <strong class="green">Running</strong>
+    <strong class="green">Running</strong>&nbsp;&nbsp;
+    <input type="button" value="Stop" class="btn" />
   <% else %>
-    <strong class="red">Stopped</strong>
+    <strong class="red">Stopped</strong>&nbsp;&nbsp;
+    <input type="button" value="Start" class="btn" />
   <% end -%>
 </div>
