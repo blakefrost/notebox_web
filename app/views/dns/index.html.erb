@@ -1,8 +1,16 @@
+<style type="text/css" media="screen">
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
+  }
+</style>
 <div class="container">
   DNS Proxy is
   <% if @running %>
-    <strong>Running</strong>
+    <strong class="green">Running</strong>
   <% else %>
-    <strong>Stopped</strong>
+    <strong class="red">Stopped</strong>
   <% end -%>
 </div>
