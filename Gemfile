@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'binding_of_caller'
 gem 'nokogiri'
 gem 'angular-rails-templates', github: 'luckyjazzbo/angular-rails-templates'
+gem 'font-awesome-sass'
 
 gem 'bson'
 gem 'bson_ext'
