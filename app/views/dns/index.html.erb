@@ -24,4 +24,21 @@
     <strong class="red">Stopped</strong>&nbsp;&nbsp;
     <a class="btn btn-success" data-method="PUT" onclick="getPassword(this);" href="/dns?state=start"><i class="fa fa-play fa-fw"></i> Start</a>
   <% end -%>
+
+  <hr>
+
+  <h4>If the buttons here doesn't work:</h4>
+
+  <br>
+  Manual start
+  <br><br>
+  <pre>$ sudo dnsproxy.py -s 8.8.8.8 &lt;/dev/null &amp;&gt;/dev/null &amp;</pre>
+
+  Maunal stop
+  <br>
+  <br>
+  <pre>$ sudo pkill -f dnsproxy</pre>
+
+
+
 </div>
