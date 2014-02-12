@@ -62,6 +62,9 @@ NoteboxWeb::Application.routes.draw do
   # Blocked Domain
   resources :blocked_domains, only: [:create, :update, :destroy]
 
+  # Host Configuration
+  put '/host_configuration' => 'host_configuration#update'
+
   match "*a", :to => "application#routing_error", via: [:get, :post]
 
 end
