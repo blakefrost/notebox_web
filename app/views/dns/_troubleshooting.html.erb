@@ -1,5 +1,9 @@
-<h4>If the buttons here don't work:</h4>
 <h6>Manual start</h6>
 <pre>sudo dnsproxy.py -s 8.8.8.8 -f "<%= DnsController::HOSTS_FILE %>" &lt;/dev/null &amp;&gt;/dev/null &amp;</pre>
 <h6>Maunal stop</h6>
 <pre>sudo pkill -f dnsproxy</pre>
+
+<ul>
+  <li><%= link_to 'Host File <i class="fa fa-external-link"></i>'.html_safe, '/dns/hosts', target: '_new' %><br></li>
+  <li><%= link_to 'Chrome DNS Cache <i class="fa fa-external-link"></i>'.html_safe, 'chrome://net-internals/#dns', target: '_new' %></li>
+</ul>
