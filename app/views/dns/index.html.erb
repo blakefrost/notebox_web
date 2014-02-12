@@ -1,5 +1,7 @@
-<%= stylesheet_link_tag "dns", media: "all" %>
-<%= javascript_include_tag "dns" %>
+<%= content_for :head do %>
+  <%= stylesheet_link_tag "dns", media: "all" %>
+  <%= javascript_include_tag "dns" %>
+<% end -%>
 
 <div class="container">
   <% if flash[:notice] %>
