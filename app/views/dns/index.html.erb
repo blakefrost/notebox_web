@@ -1,11 +1,5 @@
 <%= stylesheet_link_tag "dns", media: "all" %>
-
-<script type="text/javascript" charset="utf-8">
-  function getPassword(el){
-    password = prompt("Give me your password");
-    el.href = el.href + "&password=" + password;
-  }
-</script>
+<%= javascript_include_tag "dns" %>
 
 <div class="container">
   <% if flash[:notice] %>
