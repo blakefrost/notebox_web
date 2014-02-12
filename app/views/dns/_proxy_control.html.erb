@@ -1,0 +1,10 @@
+DNS Proxy is
+<% if @running %>
+  <strong class="green">Running</strong>&nbsp;&nbsp;
+  <a class="btn btn-primary" data-method="PUT" onclick="getPassword(this);" href="/dns?state=restart"><i class="fa fa-refresh fa-fw"></i> Restart</a>
+  <a class="btn btn-danger" data-method="PUT" onclick="getPassword(this);" href="/dns?state=stop"><i class="fa fa-stop fa-fw"></i> Stop</a>
+<% else %>
+  <strong class="red">Stopped</strong>&nbsp;&nbsp;
+  <a class="btn btn-success" data-method="PUT" onclick="getPassword(this);" href="/dns?state=start"><i class="fa fa-play fa-fw"></i> Start</a>
+<% end -%>
+<hr>
