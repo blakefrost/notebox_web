@@ -3,7 +3,7 @@
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   <input name="_method" value="PUT" type="hidden">
   <div class="form-group">
-    <textarea name="host_configuration[value]" class="form-control" rows="10"><%= @host_configuration.value %></textarea>
+    <textarea name="host_configuration[value]" class="form-control" rows="40"><%= @host_configuration.value %></textarea>
   </div>
   <button type="submit" class="btn btn-default">Save Host Configuration</button>
 </form>

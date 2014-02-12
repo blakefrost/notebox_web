@@ -20,6 +20,15 @@ class DnsController < ApplicationController
     redirect_to action: :index
   end
 
+  def hosts
+    @host_configuration = HostConfiguration.singleton
+    @blocked_list = BlockedDomain.all.order_by(:value.asc)
+    @text = @host_configuration.value
+    @text << "\n\n# Blocked Domains\n" << @blocked_list.select(&:blocked).map { |bd| "127.0.0.1 *.#{bd.value}" }.join("\n")
+
+    render text: @text, content_type: :text
+  end
+
 private
 
   def start_dnsproxy(password)

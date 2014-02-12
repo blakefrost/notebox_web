@@ -57,6 +57,7 @@ NoteboxWeb::Application.routes.draw do
 
   # DNS
   get '/dns' => 'dns#index'
+  get '/dns/hosts' => 'dns#hosts'
   put '/dns' => 'dns#control'
 
   # Blocked Domain
