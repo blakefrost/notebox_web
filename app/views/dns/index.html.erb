@@ -4,11 +4,8 @@
 <% end -%>
 
 <div class="container">
-  <% if flash[:notice] %>
-    <div class="alert alert-info">
-      <%= flash[:notice] %>
-    </div>
-  <% end -%>
+
+  <%= render 'flash' %>
 
   DNS Proxy is
   <% if @running %>
