@@ -59,6 +59,9 @@ NoteboxWeb::Application.routes.draw do
   get '/dns' => 'dns#index'
   put '/dns' => 'dns#control'
 
+  # Blocked Domain
+  resources :blocked_domains, only: [:create, :update, :delete]
+
   match "*a", :to => "application#routing_error", via: [:get, :post]
 
 end
