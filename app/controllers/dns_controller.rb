@@ -4,6 +4,7 @@ class DnsController < ApplicationController
 
   def index
     @running = `ps aux | grep dnsproxy | grep -v grep`.present?
+    @hosts= ""
   end
 
   def control
@@ -25,6 +26,7 @@ private
   end
 
   def stop_dnsproxy(password)
+
     `  bash -c "echo -n \"#{password}\" | sudo -S pkill -f dnsproxy"` # Needs to be able to run as sudo, how to?
   end
 
