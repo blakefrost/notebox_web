@@ -4,7 +4,6 @@
 <% end -%>
 
 <div class="container">
-
   <%= render 'flash' %>
 
   DNS Proxy is
@@ -17,9 +16,9 @@
     <a class="btn btn-success" data-method="PUT" onclick="getPassword(this);" href="/dns?state=start"><i class="fa fa-play fa-fw"></i> Start</a>
   <% end -%>
 
-  <hr>
-  <h4>Blocked List</h4>
+<hr>
 
+  <h4>Blocked List</h4>
   <table class="table blocked-list">
     <% @blocked_list.each do |bd| %>
       <tr>
@@ -55,11 +54,9 @@
     </tr>
   </table>
 
-  <br>
+<hr>
 
-  <hr>
   <h4>Host Configuration</h4>
-
   <form role="form" action="/host_configuration" method="post">
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
     <input name="_method" value="PUT" type="hidden">
@@ -69,19 +66,12 @@
     <button type="submit" class="btn btn-default">Save Host Configuration</button>
   </form>
 
-  <hr>
-  <h4>If the buttons here doesn't work:</h4>
+<hr>
 
-  <br>
-  Manual start
-  <br><br>
+  <h4>If the buttons here don't work:</h4>
+  <h6>Manual start</h6>
   <pre>$ sudo dnsproxy.py -s 8.8.8.8 &lt;/dev/null &amp;&gt;/dev/null &amp;</pre>
-
-  Maunal stop
-  <br>
-  <br>
+  <h6>Maunal stop</h6>
   <pre>$ sudo pkill -f dnsproxy</pre>
-
-
 
 </div>
