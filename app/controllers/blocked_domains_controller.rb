@@ -23,7 +23,9 @@ class BlockedDomainsController < ApplicationController
   end
 
   def blocked_domain_params
-    params.require(:blocked_domain).permit(:value, :blocked)
+    params.require(:blocked_domain).permit(:value, :blocked).tap do |params|
+      params[:blocked] = params[:blocked] =~ /true/i # Coalesce
+    end
   end
 
 end

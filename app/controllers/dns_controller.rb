@@ -5,7 +5,7 @@ class DnsController < ApplicationController
   def index
     @running = `ps aux | grep dnsproxy | grep -v grep`.present?
     @hosts= ""
-    @blocked_list = BlockedDomain.all
+    @blocked_list = BlockedDomain.all.order_by(:value.asc)
   end
 
   def control
