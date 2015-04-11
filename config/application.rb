@@ -27,5 +27,7 @@ module NoteboxWeb
 
     # Use Accel-Redirect for serving files with nginx
     config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end
 end

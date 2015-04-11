@@ -128,15 +128,22 @@
   }
 }
 
-pre.poem {
+@font-face {
+  font-family: 'Special Elite';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Special Elite'), local('SpecialElite-Regular'), asset-url('special_elite/SpecialElite.woff') format('woff');
+}
+
+pre.prose {
   /*border: 1px solid #eee;*/
   border: none;
   border-radius: 0px;
-
-  /*padding-left: 0;*/
-  padding: 25px 50px 30px 40px;
+  min-width: 250px;
+  padding: 30px 60px;
   background: none;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-family: 'Special Elite', cursive;
   font-size: 14px;
   line-height: 1.42857;
   margin: 20px 0;
