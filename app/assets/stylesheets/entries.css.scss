@@ -127,3 +127,26 @@
     border: 1px solid #ddd;
   }
 }
+
+pre.poem {
+  border: none;
+  border-radius: 5px;
+  padding-left: 0;
+  background: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+
+  title {
+    font-size: 16pt;
+    font-weight: 200;
+    margin: 10px 0;
+    padding: 0;
+    display: inline-block;
+  }
+
+  author {
+    display: block;
+    font-style: italic;
+  }
+}
